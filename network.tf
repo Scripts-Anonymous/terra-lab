@@ -1,5 +1,6 @@
 # Provisioning of aws networking
 
+/*
 # The VPC
 resource "aws_vpc" "tf" {
   cidr_block = "10.0.0.0/16"
@@ -45,3 +46,4 @@ resource "aws_subnet" "tf2" {
 	env = var.env_name
   }
 }
+*/

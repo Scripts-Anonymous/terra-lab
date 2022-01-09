@@ -3,13 +3,14 @@
 resource "aws_security_group" "allow-ssh-rdp-icmp-and-egress" {
   name = "allow-ssh-rdp-icmp-and-egress"
   description = "Allows SSH, RDP and ICMP traffic into instances as well as all eggress."
-  vpc_id      = aws_vpc.tf.id
+#  vpc_id      = aws_vpc.tf.id
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = [var.mike_home_IP]
+	description = "Mike-SSH"
   }
   
   ingress {
@@ -17,6 +18,7 @@ resource "aws_security_group" "allow-ssh-rdp-icmp-and-egress" {
     to_port     = 3389
     protocol    = "tcp"
     cidr_blocks = [var.mike_home_IP]
+	description = "Mike-RDP"
 }
 
   ingress {
@@ -24,6 +26,7 @@ resource "aws_security_group" "allow-ssh-rdp-icmp-and-egress" {
 	to_port     = 0
 	protocol    = "icmp"
 	cidr_blocks = [var.mike_home_IP]
+	description = "Mike-Ping"
 }
 
   egress {
