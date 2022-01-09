@@ -1,10 +1,15 @@
 # Provisioning of EC2 instances
 
+/*
+6 VMs, 3 windows server 2019 and 3 ubuntu 20.04 LTS.
+Naming: JAT<os><#> (Just Another Throwaway)
+*/
+
 resource "aws_instance" "jatwin0"{
   ami           = "ami-0d80714a054d3360c"
   instance_type = "t2.micro"
   key_name = "test-key"
-  subnet_id = "${aws_subnet.tf0.id}"
+  subnet_id = aws_subnet.tfpublic.id
   vpc_security_group_ids = [
     "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
   ]
@@ -20,7 +25,10 @@ resource "aws_instance" "jatwin1" {
   ami           = "ami-0d80714a054d3360c"
   instance_type = "t2.micro"
   key_name = "test-key"
-  subnet_id = "${aws_subnet.tf1.id}"
+  subnet_id = aws_subnet.tfpublic.id
+  vpc_security_group_ids = [
+    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+  ]
   tags = {
     Name = "JATwin1",
 	OS = "Windows",
@@ -32,7 +40,10 @@ resource "aws_instance" "jatwin2" {
   ami           = "ami-0d80714a054d3360c"
   instance_type = "t2.micro"
   key_name = "test-key"
-  subnet_id = "${aws_subnet.tf2.id}"
+  subnet_id = aws_subnet.tfpublic.id
+  vpc_security_group_ids = [
+    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+  ]
   tags = {
     Name = "JATwin2"
 	OS = "Windows"
@@ -45,8 +56,8 @@ resource "aws_instance" "jatubnt0"{
   ami           = "ami-04505e74c0741db8d"
   instance_type = "t2.micro"
   key_name = "test-key"
-  subnet_id = "${aws_subnet.tf0.id}"
-    vpc_security_group_ids = [
+  subnet_id = aws_subnet.tfpublic.id
+  vpc_security_group_ids = [
     "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
   ]
   tags = {
@@ -61,7 +72,10 @@ resource "aws_instance" "jatubnt1" {
   ami           = "ami-04505e74c0741db8d"
   instance_type = "t2.micro"
   key_name = "test-key"
-  subnet_id = "${aws_subnet.tf1.id}"
+  subnet_id = aws_subnet.tfpublic.id
+  vpc_security_group_ids = [
+    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+  ]
   tags = {
     Name = "JATubnt1"
 	OS = "Ubuntu"
@@ -73,7 +87,10 @@ resource "aws_instance" "jatubnt2" {
   ami           = "ami-04505e74c0741db8d"
   instance_type = "t2.micro"
   key_name = "test-key"
-  subnet_id = "${aws_subnet.tf2.id}"
+  subnet_id = aws_subnet.tfpublic.id
+  vpc_security_group_ids = [
+    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+  ]
   tags = {
     Name = "JATubnt2"
 	OS = "Ubuntu"
