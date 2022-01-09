@@ -3,7 +3,7 @@
 resource "aws_security_group" "allow-ssh-rdp-icmp-and-egress" {
   name = "allow-ssh-rdp-icmp-and-egress"
   description = "Allows SSH, RDP and ICMP traffic into instances as well as all eggress."
-#  vpc_id      = aws_vpc.tf.id
+  vpc_id      = aws_vpc.tf.id
 
   ingress {
     from_port   = 22
