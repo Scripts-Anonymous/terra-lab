@@ -1,0 +1,53 @@
+# The following is for setting up Terraform on Windows and creating/managing/deleting AWS EC2 instances
+
+# Ref: https://adamtheautomator.com/terraform-windows/
+
+# Prereq: Setup AWS account
+# Go to IAM > Users > Add a user
+# Username: ******
+# AWS credential type: Access key - Programmatic access
+# Group name: EC2GROUP
+# Policy: AmazonEC2FullAccess
+
+# Prereq: Create EC2 key-pair
+# Go to EC2 > Key Pairs > Create key pair
+# Name: test-key
+# Key pair type: RSA
+# Private key file format: .pem
+# Tags (Key/Value): env/TESTENV
+# Save to %HOMEDIR%/.ssh/test-key.pem
+
+# Prereq: install AWS CLI
+msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+
+# Prereq: configure awscli (use non-admin PS prompt)
+aws configure
+AWS Access Key ID [None]: *****************
+AWS Secret Access Key [None]: *****************
+Default region name [None]: us-east-1
+Default output format [None]: json
+
+# Prereq: Install package manager "Chocolatey"
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install Terraform (using Chocolatey)
+choco install terraform -y
+
+# Create terraform directory for our test environment
+mkdir c:\adm\terraform\terra-lab
+cd c:\adm\terraform\terra-lab
+
+# Create a TF script to create an EC2 Windows instance
+# See main.tf
+
+# Initialize terraform
+terraform init
+
+# Check terraform script
+terraform plan
+
+# Create the EC2 instance
+terraform apply
+
+# Destroy the EC2 instance
+terraform destroy
