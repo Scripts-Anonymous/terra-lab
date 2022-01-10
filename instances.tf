@@ -11,7 +11,9 @@ resource "aws_instance" "jatwin0"{
   key_name = "test-key"
   subnet_id = aws_subnet.tfpublic.id
   vpc_security_group_ids = [
-    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+    aws_security_group.allow-all-egress.id,
+	aws_security_group.allow-rdp-in.id,
+	aws_security_group.allow-icmp-in.id,
   ]
   tags = {
     Name = "JATwin0",
@@ -27,7 +29,9 @@ resource "aws_instance" "jatwin1" {
   key_name = "test-key"
   subnet_id = aws_subnet.tfpublic.id
   vpc_security_group_ids = [
-    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+    aws_security_group.allow-all-egress.id,
+	aws_security_group.allow-rdp-in.id,
+	aws_security_group.allow-icmp-in.id,
   ]
   tags = {
     Name = "JATwin1",
@@ -42,7 +46,9 @@ resource "aws_instance" "jatwin2" {
   key_name = "test-key"
   subnet_id = aws_subnet.tfpublic.id
   vpc_security_group_ids = [
-    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+    aws_security_group.allow-all-egress.id,
+	aws_security_group.allow-rdp-in.id,
+	aws_security_group.allow-icmp-in.id,
   ]
   tags = {
     Name = "JATwin2"
@@ -58,7 +64,9 @@ resource "aws_instance" "jatubnt0"{
   key_name = "test-key"
   subnet_id = aws_subnet.tfpublic.id
   vpc_security_group_ids = [
-    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+    aws_security_group.allow-all-egress.id,
+	aws_security_group.allow-ssh-in.id,
+	aws_security_group.allow-icmp-in.id,
   ]
   tags = {
     Name = "JATubnt0"
@@ -74,7 +82,9 @@ resource "aws_instance" "jatubnt1" {
   key_name = "test-key"
   subnet_id = aws_subnet.tfpublic.id
   vpc_security_group_ids = [
-    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+    aws_security_group.allow-all-egress.id,
+	aws_security_group.allow-ssh-in.id,
+	aws_security_group.allow-icmp-in.id,
   ]
   tags = {
     Name = "JATubnt1"
@@ -89,7 +99,9 @@ resource "aws_instance" "jatubnt2" {
   key_name = "test-key"
   subnet_id = aws_subnet.tfpublic.id
   vpc_security_group_ids = [
-    "${aws_security_group.allow-ssh-rdp-icmp-and-egress.id}",
+    aws_security_group.allow-all-egress.id,
+	aws_security_group.allow-ssh-in.id,
+	aws_security_group.allow-icmp-in.id,
   ]
   tags = {
     Name = "JATubnt2"
